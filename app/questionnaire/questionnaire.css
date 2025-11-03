@@ -60,14 +60,28 @@
   border: 1px solid #fcc;
 }
 
-.submit-button {
-  align-self: flex-start;
+.form-actions {
+  display: flex;
+  gap: 1rem;
   margin-top: 1rem;
+  align-items: center;
 }
 
-.submit-button:disabled {
+.submit-button {
+  align-self: flex-start;
+}
+
+.submit-button:disabled,
+.test-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.test-button {
+  padding: 1.25rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 @media (max-width: 768px) {

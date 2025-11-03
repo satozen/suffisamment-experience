@@ -24,6 +24,34 @@ export default function QuestionnairePage() {
     setError('')
   }
 
+  const handleTest = async () => {
+    setIsSubmitting(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/generate-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, test: true }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la génération du texte')
+      }
+
+      const data = await response.json()
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('generatedText', JSON.stringify(data))
+      }
+      router.push(`/resultat?textId=${data.textId}`)
+    } catch (err) {
+      setError('Une erreur est survenue. Veuillez réessayer.')
+      setIsSubmitting(false)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -148,13 +176,23 @@ export default function QuestionnairePage() {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button 
-            type="submit" 
-            className="btn-primary submit-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Génération en cours...' : 'Générer mon texte'}
-          </button>
+          <div className="form-actions">
+            <button 
+              type="submit" 
+              className="btn-primary submit-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Génération en cours...' : 'Générer mon texte'}
+            </button>
+            <button 
+              type="button"
+              onClick={handleTest}
+              className="btn-secondary test-button"
+              disabled={isSubmitting}
+            >
+              TEST
+            </button>
+          </div>
         </form>
       </div>
     </div>
