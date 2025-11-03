@@ -1,0 +1,141 @@
+/* Styles pour la page d'unboxing émotionnel */
+
+.unboxing-container {
+  min-height: 100vh;
+  background-color: var(--color-light-bg);
+}
+
+.unboxing-hero {
+  background-color: var(--color-dark-bg);
+  color: var(--color-white);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.unboxing-hero h1 {
+  font-family: 'Belleza', serif;
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+}
+
+.unboxing-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.unboxing-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.unboxing-section {
+  margin-bottom: 4rem;
+}
+
+.unboxing-text h2 {
+  font-family: 'Belleza', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-dark);
+}
+
+.unboxing-text p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.kit-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin: 4rem 0;
+}
+
+.kit-item {
+  background-color: var(--color-white);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.kit-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.kit-item h3 {
+  font-family: 'Belleza', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-dark);
+}
+
+.kit-item p {
+  color: var(--color-text-dark);
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+.unboxing-message {
+  background-color: var(--color-white);
+  padding: 3rem;
+  border-radius: 8px;
+  margin: 4rem 0;
+  border-left: 4px solid var(--color-pink);
+}
+
+.message-text {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.message-text:last-child {
+  margin-bottom: 0;
+}
+
+.unboxing-cta {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.unboxing-cta a {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .unboxing-hero {
+    padding: 4rem 1.5rem;
+  }
+  
+  .unboxing-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .unboxing-content {
+    padding: 2rem 1rem;
+  }
+  
+  .kit-items {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .unboxing-message {
+    padding: 2rem;
+  }
+}

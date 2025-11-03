@@ -1,0 +1,81 @@
+/* Styles pour la page de questionnaire */
+
+.questionnaire-container {
+  min-height: 100vh;
+  background-color: var(--color-light-bg);
+  padding: 4rem 2rem;
+}
+
+.questionnaire-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.questionnaire-content h1 {
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+  font-family: 'Belleza', serif;
+}
+
+.questionnaire-intro {
+  color: var(--color-text-dark);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  opacity: 0.8;
+}
+
+.questionnaire-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--color-text-dark);
+  font-size: 1.1rem;
+}
+
+.form-group textarea,
+.form-group input {
+  width: 100%;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #fcc;
+}
+
+.submit-button {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .questionnaire-container {
+    padding: 2rem 1rem;
+  }
+  
+  .questionnaire-content {
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,53 @@
+/* Styles pour le composant Logo */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo-image {
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.logo-suffisamment {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.logo-aimé {
+  font-family: 'Belleza', serif;
+  font-size: 1.8rem;
+  color: var(--color-text-dark);
+  font-style: italic;
+}
+
+.logo-container.light .logo-suffisamment,
+.logo-container.light .logo-aimé {
+  color: var(--color-white);
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .logo-text-wrapper {
+    text-align: center;
+  }
+}

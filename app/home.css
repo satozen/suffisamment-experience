@@ -1,0 +1,187 @@
+/* Styles pour la page d'accueil de Suffisamment */
+
+.home-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.home-left {
+  flex: 2;
+  background-color: var(--color-dark-bg);
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+}
+
+.home-content {
+  max-width: 600px;
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.logo-image-white {
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  /* Le logo PNG transparent sera rendu blanc sur fond sombre */
+}
+
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.home-logo .logo-suffisamment {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.home-logo .logo-aimé {
+  font-family: 'Belleza', serif;
+  font-size: 1.8rem;
+  color: var(--color-white);
+  font-style: italic;
+}
+
+.home-subtitle {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.home-title {
+  color: var(--color-white);
+  margin-bottom: 2rem;
+  font-family: 'Belleza', serif;
+}
+
+.home-description {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.home-buttons a {
+  text-decoration: none;
+}
+
+.animated-name {
+  display: inline-block;
+  animation: fadeIn 0.5s ease-in;
+  font-weight: 700;
+  text-transform: lowercase;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-right {
+  flex: 1;
+  background-color: var(--color-light-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(0,0,0,0.03) 20px, rgba(0,0,0,0.03) 21px),
+    repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(0,0,0,0.03) 20px, rgba(0,0,0,0.03) 21px);
+}
+
+.home-artwork {
+  width: 100%;
+  max-width: 400px;
+}
+
+.artwork-frame {
+  background-color: #f0e8d8;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.artwork-canvas {
+  background-color: var(--color-white);
+  aspect-ratio: 2/3;
+  padding: 2rem;
+  position: relative;
+}
+
+.artwork-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.logo-text {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  text-align: right;
+}
+
+.logo-suffisamment {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.logo-aimé {
+  font-family: 'Belleza', serif;
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  font-style: italic;
+}
+
+@media (max-width: 968px) {
+  .home-container {
+    flex-direction: column;
+  }
+  
+  .home-left {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .home-right {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .home-title {
+    font-size: 2.5rem;
+  }
+}
