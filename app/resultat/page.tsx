@@ -1,8 +1,8 @@
 // Page de résultat affichant le texte généré avec possibilité de régénération
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import './resultat.css'
 
@@ -12,9 +12,8 @@ interface TextData {
   formData?: any
 }
 
-export default function ResultatPage() {
+function ResultatContent() {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const [textData, setTextData] = useState<TextData | null>(null)
   const [isRegenerating, setIsRegenerating] = useState(false)
   const [error, setError] = useState('')
@@ -120,5 +119,19 @@ export default function ResultatPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ResultatPage() {
+  return (
+    <Suspense fallback={
+      <div className="resultat-container">
+        <div className="resultat-content">
+          <p>Chargement du texte...</p>
+        </div>
+      </div>
+    }>
+      <ResultatContent />
+    </Suspense>
   )
 }
