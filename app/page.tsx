@@ -41,7 +41,7 @@ export default function Home() {
             />
             <div className="logo-text-wrapper">
               <div className="logo-suffisamment">SUFFISAMMENT</div>
-              <div className="logo-aimé">Aimé</div>
+              <div className="logo-aimé">l'expérience</div>
             </div>
           </div>
           <p className="home-subtitle">SUFFISAMMENT - L'ART QUI FAIT DU BIEN AU QUOTIDIEN</p>

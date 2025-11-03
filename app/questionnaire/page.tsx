@@ -9,18 +9,32 @@ import './questionnaire.css'
 export default function QuestionnairePage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
-    tonNom: '',
-    nomPersonne: '',
-    ceQuiManqueLePlus: '',
-    descriptionAmi: '',
-    relation: '',
-    momentsPreferes: ''
+    prenomNom: '',
+    courriel: '',
+    adressePostale: '',
+    elementsAretirer: '',
+    suffisammentHistoire: '',
+    souvenirs: '',
+    messageSouhaite: '',
+    informationsPortrait: '',
+    mediasSociaux: [] as string[]
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+    setError('')
+  }
+
+  const handleCheckboxChange = (value: string) => {
+    setFormData(prev => {
+      const current = prev.mediasSociaux || []
+      const updated = current.includes(value)
+        ? current.filter(item => item !== value)
+        : [...current, value]
+      return { ...prev, mediasSociaux: updated }
+    })
     setError('')
   }
 
@@ -54,6 +68,13 @@ export default function QuestionnairePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Valider que au moins une option est sélectionnée pour les médias sociaux
+    if (formData.mediasSociaux.length === 0) {
+      setError('Veuillez sélectionner au moins une option pour les médias sociaux.')
+      return
+    }
+    
     setIsSubmitting(true)
     setError('')
 
@@ -92,86 +113,161 @@ export default function QuestionnairePage() {
 
         <form onSubmit={handleSubmit} className="questionnaire-form">
           <div className="form-group">
-            <label htmlFor="tonNom">
-              Ton nom
+            <label htmlFor="prenomNom">
+              1. Ton prénom et nom (Tel qu'inscrit lors de ta commande via mon site web)
             </label>
             <input
               type="text"
-              id="tonNom"
-              value={formData.tonNom}
-              onChange={(e) => handleChange('tonNom', e.target.value)}
-              placeholder="Ton prénom..."
+              id="prenomNom"
+              value={formData.prenomNom}
+              onChange={(e) => handleChange('prenomNom', e.target.value)}
+              placeholder="Ton prénom et nom..."
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="nomPersonne">
-              Le nom de la personne que tu voudrais entendre
+            <label htmlFor="courriel">
+              2. Courriel (le même qu'inscrit lors de ta commande)
+            </label>
+            <input
+              type="email"
+              id="courriel"
+              value={formData.courriel}
+              onChange={(e) => handleChange('courriel', e.target.value)}
+              placeholder="ton@courriel.com"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="adressePostale">
+              3. Ton adresse postale
             </label>
             <input
               type="text"
-              id="nomPersonne"
-              value={formData.nomPersonne}
-              onChange={(e) => handleChange('nomPersonne', e.target.value)}
-              placeholder="Son prénom..."
+              id="adressePostale"
+              value={formData.adressePostale}
+              onChange={(e) => handleChange('adressePostale', e.target.value)}
+              placeholder="Ton adresse complète..."
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="ceQuiManqueLePlus">
-              Qu'est-ce qui te manque le plus ?
+            <label htmlFor="elementsAretirer">
+              4. Y a-t-il des éléments de la ou les photos partagées que tu souhaites retirer ?
             </label>
             <textarea
-              id="ceQuiManqueLePlus"
-              value={formData.ceQuiManqueLePlus}
-              onChange={(e) => handleChange('ceQuiManqueLePlus', e.target.value)}
-              placeholder="Dis-moi ce qui te manque le plus chez cette personne..."
-              rows={5}
+              id="elementsAretirer"
+              value={formData.elementsAretirer}
+              onChange={(e) => handleChange('elementsAretirer', e.target.value)}
+              placeholder="Ex: je ne veux pas de tuque, retirer mes lunettes de soleil, enlever son toupette, etc."
+              rows={4}
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="descriptionAmi">
-              Tu le décrirais comment à un ami ?
+            <label htmlFor="suffisammentHistoire">
+              5. Écris-moi l'adjectif qualificatif de ton SUFFISAMMENT et les grandes lignes de ton histoire pour m'aider à rédiger le mot personnalisé
             </label>
+            <p className="form-hint">
+              Exemples: Suffisamment forte / Suffisamment maman / Suffisamment unique / Suffisamment présente, etc.
+            </p>
             <textarea
-              id="descriptionAmi"
-              value={formData.descriptionAmi}
-              onChange={(e) => handleChange('descriptionAmi', e.target.value)}
-              placeholder="Comment tu décrirais cette personne à quelqu'un qui ne l'a jamais connue ?"
-              rows={5}
+              id="suffisammentHistoire"
+              value={formData.suffisammentHistoire}
+              onChange={(e) => handleChange('suffisammentHistoire', e.target.value)}
+              placeholder="Ma mère est tout pour nous. Elle a toujours été présente pour ses boys..."
+              rows={8}
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="relation">
-              Quelle était votre relation ?
+            <label htmlFor="souvenirs">
+              6. Quels sont les plus beaux souvenirs avec cette personne ou ces personnes? Avez-vous des traditions ensemble? Des passions partagées? Quels sont vos rêves, vos projets?
             </label>
             <input
               type="text"
-              id="relation"
-              value={formData.relation}
-              onChange={(e) => handleChange('relation', e.target.value)}
-              placeholder="Ex: Ma mère, mon grand-père, mon meilleur ami..."
+              id="souvenirs"
+              value={formData.souvenirs}
+              onChange={(e) => handleChange('souvenirs', e.target.value)}
+              placeholder="Tes plus beaux souvenirs..."
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="momentsPreferes">
-              Quels étaient vos moments préférés ensemble ?
+            <label htmlFor="messageSouhaite">
+              7. Qu'est-ce que tu souhaites lui dire plus que tout?
+            </label>
+            <input
+              type="text"
+              id="messageSouhaite"
+              value={formData.messageSouhaite}
+              onChange={(e) => handleChange('messageSouhaite', e.target.value)}
+              placeholder="Ton message..."
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="informationsPortrait">
+              8. Partage moi le nom des gens sur le portrait, le nom des gens qui offrent le portrait et d'autres informations utiles (son surnom, le nom de ses enfants, ses petits-enfants, son chien, etc). Tu peux me dire également de qui provient le cadeau.
             </label>
             <textarea
-              id="momentsPreferes"
-              value={formData.momentsPreferes}
-              onChange={(e) => handleChange('momentsPreferes', e.target.value)}
-              placeholder="Parle-moi de ces moments précieux que vous avez partagés..."
-              rows={5}
+              id="informationsPortrait"
+              value={formData.informationsPortrait}
+              onChange={(e) => handleChange('informationsPortrait', e.target.value)}
+              placeholder="Noms, relations, informations utiles..."
+              rows={6}
+              required
             />
+          </div>
+
+          <div className="form-group">
+            <label>
+              9. Que me permets-tu de partager sur les médias sociaux?
+            </label>
+            <div className="checkbox-group">
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={formData.mediasSociaux.includes('portrait')}
+                  onChange={() => handleCheckboxChange('portrait')}
+                />
+                <span>Le portrait final</span>
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={formData.mediasSociaux.includes('photo')}
+                  onChange={() => handleCheckboxChange('photo')}
+                />
+                <span>La photo originale</span>
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={formData.mediasSociaux.includes('message')}
+                  onChange={() => handleCheckboxChange('message')}
+                />
+                <span>Le message émouvant</span>
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={formData.mediasSociaux.includes('aucun')}
+                  onChange={() => handleCheckboxChange('aucun')}
+                />
+                <span>Aucun</span>
+              </label>
+            </div>
+            {formData.mediasSociaux.length === 0 && (
+              <p className="form-error-hint">Veuillez sélectionner au moins une option</p>
+            )}
           </div>
 
           {error && <div className="error-message">{error}</div>}

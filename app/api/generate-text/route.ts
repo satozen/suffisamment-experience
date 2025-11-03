@@ -9,12 +9,19 @@ const anthropic = new Anthropic({
 
 // Fonction pour générer un texte placeholder pour le développement
 function generatePlaceholderText(formData: any): string {
-  const tonNom = formData.tonNom || 'toi'
-  const nomPersonne = formData.nomPersonne || 'cette personne chère'
+  const prenomNom = formData.prenomNom || 'toi'
   
-  const manqueText = formData.ceQuiManqueLePlus 
-    ? `Ce qui te manque le plus, c'est ${formData.ceQuiManqueLePlus.substring(0, 150)}.`
-    : 'Ces moments partagés qui semblent maintenant si loin.'
+  // Extraire l'adjectif SUFFISAMMENT
+  const suffisammentMatch = formData.suffisammentHistoire?.match(/Suffisamment\s+(\w+)/i)
+  const suffisammentAdjectif = suffisammentMatch ? suffisammentMatch[1] : 'forte'
+  
+  const histoireText = formData.suffisammentHistoire 
+    ? formData.suffisammentHistoire.substring(0, 300)
+    : ''
+  
+  const souvenirsText = formData.souvenirs 
+    ? formData.souvenirs.substring(0, 200)
+    : ''
   
   return `Il n'y a pas de mots magiques pour effacer la douleur.
 
@@ -22,7 +29,9 @@ Pour revenir en arrière.
 
 Mais il y a des mots pour réconforter. Pour que cette traversée soit moins solitaire.
 
-${tonNom}, je vois cette épreuve qui a tout chamboulé. ${manqueText}
+${prenomNom}, je vois cette épreuve qui a tout chamboulé.
+
+${histoireText ? `\n${histoireText}\n` : ''}
 
 Je sais que certains jours, juste respirer te demande déjà beaucoup.
 
@@ -50,7 +59,9 @@ Pour t'écouter quand tu voudras parler. Pour respecter ton silence quand les mo
 
 Pour tenir ta main dans les moments sombres.
 
-${formData.momentsPreferes ? `Je me souviens de ces moments ensemble : ${formData.momentsPreferes.substring(0, 200)}...` : ''}
+${souvenirsText ? `\nJe me souviens de ces moments précieux : ${souvenirsText}...` : ''}
+
+${formData.messageSouhaite ? `\n${formData.messageSouhaite.substring(0, 150)}` : ''}
 
 Ces petits moments de grâce surgissent parfois, inattendus, au cœur même de l'épreuve.
 
@@ -58,7 +69,7 @@ Un éclat de rire soudain. Une conversation profonde. Un instant de paix volé a
 
 J'espère que cette œuvre te rappellera à chaque regard que tu n'es pas seule.
 
-Que tu es SUFFISAMMENT.
+Que tu es SUFFISAMMENT ${suffisammentAdjectif}.
 
 Résiliente pour traverser cette épreuve.
 
@@ -105,15 +116,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Extraire les informations pertinentes du nouveau formulaire
+    const suffisammentMatch = formData.suffisammentHistoire?.match(/Suffisamment\s+(\w+)/i)
+    const suffisammentAdjectif = suffisammentMatch ? suffisammentMatch[1] : 'forte'
+    const prenomNom = formData.prenomNom || 'la personne'
+    const nomsExtraits = formData.informationsPortrait || ''
+    
     const prompt = `Tu es un écrivain sensible et empathique spécialisé dans l'accompagnement du deuil. Tu écris des textes personnels et touchants qui offrent du réconfort authentique.
 
-Tu vas écrire un texte de réconfort adressé à ${formData.tonNom || 'la personne en deuil'}, à propos de ${formData.nomPersonne || 'la personne décédée'}.
+Tu vas écrire un texte de réconfort personnalisé.
 
-Informations:
-- Ce qui manque le plus: ${formData.ceQuiManqueLePlus}
-- Description de ${formData.nomPersonne || 'la personne'}: ${formData.descriptionAmi}
-- Relation: ${formData.relation}
-- Moments préférés ensemble: ${formData.momentsPreferes || 'Non spécifié'}
+Informations sur la personne qui reçoit le texte: ${prenomNom}
+${formData.informationsPortrait ? `\nInformations sur le portrait et les personnes: ${formData.informationsPortrait}` : ''}
+
+${formData.suffisammentHistoire ? `\nHistoire et contexte - SUFFISAMMENT ${suffisammentAdjectif}: ${formData.suffisammentHistoire}` : ''}
+${formData.souvenirs ? `\nSouvenirs et moments partagés: ${formData.souvenirs}` : ''}
+${formData.messageSouhaite ? `\nMessage souhaité: ${formData.messageSouhaite}` : ''}
 
 STYLE TRÈS IMPORTANT - Suis ce style exactement:
 - Utilise des phrases courtes et percutantes
@@ -167,10 +185,16 @@ Le texte doit être entre 400 et 600 mots, écrit en français, avec ce style de
       text: generatedText,
       formData, // Optionnel: pour permettre la régénération
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error generating text:', error)
+    const errorMessage = error?.message || 'Erreur inconnue'
+    const errorDetails = error?.error?.message || errorMessage
+    
     return NextResponse.json(
-      { error: 'Erreur lors de la génération du texte' },
+      { 
+        error: 'Erreur lors de la génération du texte',
+        details: process.env.NODE_ENV === 'development' ? errorDetails : undefined
+      },
       { status: 500 }
     )
   }

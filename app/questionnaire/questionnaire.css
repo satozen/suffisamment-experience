@@ -52,6 +52,49 @@
   width: 100%;
 }
 
+.form-hint {
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  opacity: 0.7;
+  font-style: italic;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-pink);
+}
+
+.checkbox-label span {
+  flex: 1;
+}
+
+.form-error-hint {
+  color: #c33;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
 .error-message {
   background-color: #fee;
   color: #c33;
