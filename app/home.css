@@ -162,7 +162,7 @@
 
 .home-hero-image {
   width: 100%;
-  max-width: 700px;
+  max-width: 450px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -181,34 +181,75 @@
     0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* Texte en filigrane derrière l'image */
+/* Texte en filigrane derrière l'image - container */
 .hero-text-background {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Belleza', serif;
-  font-size: 1.8rem;
-  line-height: 2.2;
-  color: rgba(44, 44, 44, 0.08);
-  max-width: 90%;
-  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 1;
-  font-style: italic;
-  animation: textAppear 3s ease-out forwards;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 0;
+}
+
+.scroll-line {
+  font-family: 'Belleza', serif;
+  color: rgba(44, 44, 44, 0.25);
+  white-space: nowrap;
+  animation: textFadeIn 2s ease-out forwards;
   opacity: 0;
 }
 
-@keyframes textAppear {
+.scroll-line.size-small {
+  font-size: 1.1rem;
+}
+
+.scroll-line.size-medium {
+  font-size: 1.4rem;
+}
+
+.scroll-line.size-large {
+  font-size: 1.7rem;
+}
+
+.scroll-left {
+  animation: scrollLeft 80s linear infinite, textFadeIn 2s ease-out forwards;
+}
+
+.scroll-right {
+  animation: scrollRight 80s linear infinite, textFadeIn 2s ease-out forwards;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes textFadeIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
     filter: blur(5px);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
     filter: blur(0);
   }
 }

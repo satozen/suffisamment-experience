@@ -66,7 +66,30 @@ export default function Home() {
       </div>
       <div className="home-right">
         <div className="hero-text-background">
-          Mon cher enfant, si je pouvais te parler aujourd'hui, je te dirais que tu as été aimé au-delà des mots. Chaque rire que nous avons partagé, chaque moment précieux reste gravé dans l'éternité. Ne pleure pas trop longtemps, vis pleinement, aime profondément, et sache que je suis toujours là, dans ton cœur...
+          <div className="scroll-line scroll-left size-medium">
+            Il n'y a pas de mots magiques pour effacer la douleur. Pour revenir en arrière. Mais il y a des mots pour réconforter. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Il n'y a pas de mots magiques pour effacer la douleur. Pour revenir en arrière. Mais il y a des mots pour réconforter. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Il n'y a pas de mots magiques pour effacer la douleur. Pour revenir en arrière. Mais il y a des mots pour réconforter.
+          </div>
+          <div className="scroll-line scroll-right size-small">
+            Je vois cette peur qui t'habite. Cette épreuve qui a tout chamboulé. Tu n'as pas à être forte tous les jours. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je vois cette peur qui t'habite. Cette épreuve qui a tout chamboulé. Tu n'as pas à être forte tous les jours. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je vois cette peur qui t'habite. Cette épreuve qui a tout chamboulé. Tu n'as pas à être forte tous les jours.
+          </div>
+          <div className="scroll-line scroll-left size-large">
+            Je sais que certains jours, juste respirer te demande déjà beaucoup. Que les nuits sont remplies de questions. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je sais que certains jours, juste respirer te demande déjà beaucoup. Que les nuits sont remplies de questions. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je sais que certains jours, juste respirer te demande déjà beaucoup. Que les nuits sont remplies de questions.
+          </div>
+          <div className="scroll-line scroll-right size-medium">
+            Tu n'as pas à sourire quand tu as envie de pleurer. Tu as le droit d'être fâchée. Tu as le droit d'avoir peur. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tu n'as pas à sourire quand tu as envie de pleurer. Tu as le droit d'être fâchée. Tu as le droit d'avoir peur. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tu n'as pas à sourire quand tu as envie de pleurer. Tu as le droit d'être fâchée. Tu as le droit d'avoir peur.
+          </div>
+          <div className="scroll-line scroll-left size-small">
+            Je ne te dirai pas ces phrases vides. Ce que je te dirai, c'est que je suis là. Pour tenir ta main dans les moments sombres. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je ne te dirai pas ces phrases vides. Ce que je te dirai, c'est que je suis là. Pour tenir ta main dans les moments sombres. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Je ne te dirai pas ces phrases vides. Ce que je te dirai, c'est que je suis là. Pour tenir ta main dans les moments sombres.
+          </div>
+          <div className="scroll-line scroll-right size-large">
+            Ces moments de grâce surgissent parfois, inattendus, au cœur même de l'épreuve. Un instant de paix volé au chaos. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ces moments de grâce surgissent parfois, inattendus, au cœur même de l'épreuve. Un instant de paix volé au chaos. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ces moments de grâce surgissent parfois, inattendus, au cœur même de l'épreuve. Un instant de paix volé au chaos.
+          </div>
+          <div className="scroll-line scroll-left size-medium">
+            Tu es SUFFISAMMENT. Résiliente pour traverser cette épreuve. Tu n'as pas besoin d'être une guerrière. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tu es SUFFISAMMENT. Résiliente pour traverser cette épreuve. Tu n'as pas besoin d'être une guerrière. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tu es SUFFISAMMENT. Résiliente pour traverser cette épreuve. Tu n'as pas besoin d'être une guerrière.
+          </div>
+          <div className="scroll-line scroll-right size-small">
+            Prends soin de toi. Célèbre les petites victoires. Je crois en toi. Tu restes toi, précieuse et profondément aimée. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prends soin de toi. Célèbre les petites victoires. Je crois en toi. Tu restes toi, précieuse et profondément aimée. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prends soin de toi. Célèbre les petites victoires. Je crois en toi. Tu restes toi, précieuse et profondément aimée.
+          </div>
         </div>
         <div className="home-hero-image">
           <Image 
